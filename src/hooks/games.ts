@@ -5,7 +5,7 @@ import rawgApi from "../api/rawgApi";
 // import rawgApi from "../api/rawgApi";
 
 export function useGames() {
-  const [products, setProducts] = useState<Game[]>([]);
+  const [game, setGame] = useState<Game[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -13,14 +13,11 @@ export function useGames() {
     setError("");
 
     try {
-      //   const response = await axios.get<Game[]>(
-      //     "https://fakestoreapi.com/products?limit=5",
-      //   );
       const response = await rawgApi.get<GamesResponse>("/games", {
         params: { page_size: 5 },
       });
 
-      setProducts(response.data.results as Game[]);
+      setGame(response.data.results as Game[]);
       setLoading(false);
     } catch (e: unknown) {
       const error = e as AxiosError;
@@ -33,5 +30,5 @@ export function useGames() {
     fetchGames();
   }, []);
 
-  return { products, error, loading };
+  return { game, error, loading };
 }

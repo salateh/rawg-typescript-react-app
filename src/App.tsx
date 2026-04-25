@@ -1,19 +1,15 @@
 import React from "react";
 import styles from "./MyComponent.module.css";
-import { Game } from "./types";
-import { useGames } from "./hooks/product";
-import { Product } from "./components/GameCard/GameCard";
+import { Route, Routes } from "react-router-dom";
+import { GamesPage } from "./pages/GamesPage";
 
 function App() {
-  const { error, loading, products } = useGames();
 
   return (
     <>
-      <div>
-        {products.map((product) => (
-          <Product key={product.id} product={product} />
-        ))}
-      </div>
+      <Routes>
+        <Route path="/" element={<GamesPage />}></Route>
+      </Routes>
     </>
   );
 }
