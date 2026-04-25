@@ -14,8 +14,8 @@ import type {
   RawgApiResponse,
   Requirements,
   State,
-} from "./index.js";
-export type { Requirements } from "./common.js";
+} from "./index";
+export type { Requirements } from "./common";
 
 export interface Game {
   id: number;

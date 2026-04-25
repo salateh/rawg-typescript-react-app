@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import type { GamesResponse, Game } from "../types/index.js";
+import { GamesResponse, Game } from "../types/index";
 import axios, { AxiosError } from "axios";
 import rawgApi from "../api/rawgApi";
+// import rawgApi from "../api/rawgApi";
 
 export function useGames() {
   const [products, setProducts] = useState<Game[]>([]);
@@ -19,7 +20,7 @@ export function useGames() {
         params: { page_size: 5 },
       });
 
-      setProducts(response.data.results);
+      setProducts(response.data.results as Game[]);
       setLoading(false);
     } catch (e: unknown) {
       const error = e as AxiosError;
