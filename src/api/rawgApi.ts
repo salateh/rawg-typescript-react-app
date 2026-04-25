@@ -7,5 +7,4 @@ const rawgApi = axios.create({
     key: API_KEY,
   },
 });
-
 export default rawgApi;
