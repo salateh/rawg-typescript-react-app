@@ -15,6 +15,7 @@ export function useGames() {
     try {
       const response = await rawgApi.get<GamesResponse>("/games", {
         params: { page_size: 5 },
+
       });
 
       setGame(response.data.results as Game[]);
@@ -31,4 +32,29 @@ export function useGames() {
   }, []);
 
   return { game, error, loading };
+}
+
+export function useGameDetail(id: string | undefined) {
+  const [game, setGame] = useState<Game | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  useEffect(() => {
+    if (!id) return;
+
+    async function fetchGame() {
+      setLoading(true);
+      try {
+        const response = await rawgApi.get<Game>(`/games/${id}`);
+        setGame(response.data);
+        setLoading(false);
+      } catch (e) {
+        setError((e as AxiosError).message);
+        setLoading(false);
+      }
+    }
+
+    fetchGame();
+  }, [id]); // Перезапускать, если ID изменился
+
+  return { game, loading, error };
 }

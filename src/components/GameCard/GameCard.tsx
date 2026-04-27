@@ -3,9 +3,10 @@ import { Game } from "../../types/index";
 
 interface ProductProps {
   product: Game;
+  nav: () => void;
 }
 
-export function Product({ product }: ProductProps) {
+export function Product({ product, nav }: ProductProps) {
   const [details, setDetails] = useState(false);
 
   const btnBgClassName = details ? "bg-yellow-400" : "bg-blue-400";
@@ -14,9 +15,12 @@ export function Product({ product }: ProductProps) {
   ///
 
   return (
-    <div className="border py-2 px-4 reounded flex flex-col items-center mb-2">
+    <div
+      className="border py-2 px-4 reounded flex flex-col items-center mb-2"
+      onClick={nav}
+    >
       {product.name}
-      <img src={product.background_image} className="w-1/6" />
+      <img src={product.background_image} className="w-1/6" alt="" />
       <span className="font-bold">{product.released}</span>
       <button
         onClick={() => setDetails((prev) => !prev)}
