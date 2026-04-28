@@ -9,6 +9,7 @@ export function GamesPage() {
   const { game, loading } = useGames();
   const navigate = useNavigate();
 
+
   if (loading) return <Loader />;
 
   return (
