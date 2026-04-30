@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Game } from "../../types";
+import { Game } from "../../../types";
 
 interface ProductProps {
   product: Game;
@@ -12,7 +12,9 @@ function Card({ product }: ProductProps) {
         <div className="card">
           <div className="content-box">
             <span className="card-title">{product.name}</span>
-            <p className="card-content">{product.description_raw}</p>
+            <p className="card-content">
+              {product.description_raw.slice(0, 300)}...
+            </p>
             {/* <span className="see-more">See More</span> */}
           </div>
           <div className="date-box">

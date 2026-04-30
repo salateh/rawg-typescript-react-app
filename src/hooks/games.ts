@@ -15,11 +15,12 @@ export function useGames() {
     try {
       const response = await rawgApi.get<GamesResponse>("/games", {
         params: { page_size: 5 },
-
       });
 
       setGame(response.data.results as Game[]);
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 500);
     } catch (e: unknown) {
       const error = e as AxiosError;
       setLoading(false);
@@ -45,8 +46,11 @@ export function useGameDetail(id: string | undefined) {
       setLoading(true);
       try {
         const response = await rawgApi.get<Game>(`/games/${id}`);
+
         setGame(response.data);
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 500);
       } catch (e) {
         setError((e as AxiosError).message);
         setLoading(false);

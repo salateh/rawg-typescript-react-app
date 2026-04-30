@@ -1,25 +1,22 @@
 import React from "react";
-import styles from "./MyComponent.module.css";
-import { Route, Routes, useNavigate } from "react-router-dom";
-import { GamesPage } from "./pages/GamesPage";
-import { GameDetailsPage } from "./pages/GameDetailsPage";
-import { NavBar } from "./components/GameCard/NavBar";
-// import { NavBarProvider, useNavBar } from "./context/UseNavBarContext";
+import { Route, Routes } from "react-router-dom";
+import { GamesPage } from "./pages/Game/GamesPage";
+import { GameDetailsPage } from "./pages/Game/GameDetailsPage";
+import { MainLayout } from "./layouts/MainLayout";
+import { ProfileAdmin } from "./components/GameCard/Profile/ProfileAdmin";
+import { ProfilePage } from "./pages/Profile/ProfilePage";
 
 function App() {
-  // const { page } = useNavBar();
-  const navigate = useNavigate();
-
   return (
-    <>
-      <NavBar />
-      {/* <NavBarProvider> */}
-      <Routes>
-        <Route path="/games" element={<GamesPage />}></Route>
-        <Route path="/game/:id" element={<GameDetailsPage />}></Route>
-      </Routes>
-      {/* </NavBarProvider> */}
-    </>
+    <Routes>
+      {/* Оборачиваем все маршруты в Layout */}
+      <Route path="/" element={<MainLayout />}>
+        <Route index element={<GamesPage />} />
+        <Route path="games" element={<GamesPage />} />
+        <Route path="game/:id" element={<GameDetailsPage />} />
+        <Route path="profile" element={<ProfilePage />} />
+      </Route>
+    </Routes>
   );
 }
 

@@ -44,7 +44,7 @@ export function NavBar() {
             />
           </svg>
         </button>
-        <button className="button">
+        <button className="button" onClick={() => navigate("/profile")}>
           <svg
             className="icon"
             stroke="currentColor"

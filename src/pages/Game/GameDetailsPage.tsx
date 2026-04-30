@@ -1,10 +1,10 @@
 import React from "react";
 import { useContext, useState } from "react";
-import { useGameDetail, useGames } from "../hooks/games";
-import { Product } from "../components/GameCard/GameCard";
+import { useGameDetail, useGames } from "../../hooks/games";
+import { Product } from "../../components/GameCard/Games/GameCard";
 import { useParams } from "react-router-dom";
-import { Loader } from "../components/GameCard/Spinner";
-import Card from "../components/GameCard/GameDetails";
+import { Loader } from "../../components/GameCard/Loader/Spinner";
+import Card from "../../components/GameCard/Games/GameDetails";
 
 export function GameDetailsPage() {
   const { id } = useParams<{ id: string }>();
@@ -16,7 +16,8 @@ export function GameDetailsPage() {
     );
   }
   return (
-    <div className="grid grid-cols-2 gap-4">
+    // <div className="grid grid-cols-2 gap-4">
+    <div className="flex justify-center">
       <Card key={game?.id} product={game} />
     </div>
   );
