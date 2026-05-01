@@ -1,10 +1,8 @@
 import React from "react";
-import { useContext, useState } from "react";
 import { useGameDetail, useGames } from "../../hooks/games";
-import { Product } from "../../components/GameCard/Games/GameCard";
 import { useParams } from "react-router-dom";
-import { Loader } from "../../components/GameCard/Loader/Spinner";
-import Card from "../../components/GameCard/Games/GameDetails";
+import Card from "../../components/GameCard/GameDetails";
+import { Loader } from "../../components/Loader/Spinner";
 
 export function GameDetailsPage() {
   const { id } = useParams<{ id: string }>();

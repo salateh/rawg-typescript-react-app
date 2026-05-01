@@ -1,9 +1,8 @@
 import React from "react";
-import { useContext, useState } from "react";
 import { useGames } from "../../hooks/games";
-import { Product } from "../../components/GameCard/Games/GameCard";
 import { useNavigate } from "react-router-dom";
-import { Loader } from "../../components/GameCard/Loader/Spinner";
+import { Loader } from "../../components/Loader/Spinner";
+import { Product } from "../../components/GameCard/GameCard";
 
 export function GamesPage() {
   const { game, loading } = useGames();

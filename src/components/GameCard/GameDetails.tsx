@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Game } from "../../../types";
+import { Game } from "../../types";
 
 interface ProductProps {
   product: Game;

@@ -1,11 +1,10 @@
 import React from "react";
-import { useGames } from "../../hooks/games";
-import { ProfileAdmin } from "../../components/GameCard/Profile/ProfileAdmin";
-import { useLoadingProfile } from "../../hooks/profile";
-import { Loader } from "../../components/GameCard/Loader/Spinner";
+import { ProfileAdmin } from "../../components/Profile/ProfileAdmin";
+import { Loader } from "../../components/Loader/Spinner";
+import { useProfile } from "../../components/Profile/hooks/profile";
 
 export function ProfilePage() {
-  const { loading } = useLoadingProfile();
+  const { loading } = useProfile();
   if (loading) return <Loader />;
 
   return <ProfileAdmin />;

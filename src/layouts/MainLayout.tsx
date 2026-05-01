@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { NavBar } from "../components/GameCard/NavBar/NavBar";
+import { NavBar } from "../components/NavBar/NavBar";
 import styled from "styled-components";
 
 export function MainLayout() {

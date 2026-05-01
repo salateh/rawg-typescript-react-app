@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Game } from "../../../types/index";
+import { Game } from "../../types";
+// import { Game } from "../../types/index";
 
 interface ProductProps {
   product: Game;
