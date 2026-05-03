@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { GamesResponse, Game } from "../types/index";
 import axios, { AxiosError } from "axios";
 import rawgApi from "../api/rawgApi";
+import { useNavigate } from "react-router-dom";
 // import rawgApi from "../api/rawgApi";
 
 export function useGames() {
@@ -36,6 +37,8 @@ export function useGames() {
 }
 
 export function useGameDetail(id: string | undefined) {
+  const navigate = useNavigate();
+
   const [game, setGame] = useState<Game | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");

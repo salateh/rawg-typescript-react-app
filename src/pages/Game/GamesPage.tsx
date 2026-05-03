@@ -5,10 +5,11 @@ import { Loader } from "../../components/Loader/Spinner";
 import { Product } from "../../components/GameCard/GameCard";
 
 export function GamesPage() {
-  const { game, loading } = useGames();
+  const { game, loading} = useGames();
   const navigate = useNavigate();
 
   if (loading) return <Loader />;
+
 
   return (
     <div className="grid grid-cols-2 gap-4">

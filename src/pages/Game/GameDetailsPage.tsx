@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useGameDetail, useGames } from "../../hooks/games";
 import { useParams } from "react-router-dom";
 import Card from "../../components/GameCard/GameDetails";
@@ -10,6 +10,7 @@ export function GameDetailsPage() {
   if (loading) return <Loader />;
   if (error || !game) {
     return (
+      
       <div className="text-red-500">Ошибка: {error || "Игра не найдена"}</div>
     );
   }
