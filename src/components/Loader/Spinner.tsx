@@ -2,6 +2,7 @@ import React from "react";
 import { StyledWrapper } from "./Spinner.styled";
 
 export function Loader() {
+
   return (
     <>
       <div className="flex h-screen items-center justify-center">

@@ -1,11 +1,12 @@
-import React from "react";
+import React, { memo } from "react";
 import styled from "styled-components";
-import { Game } from "../../types";
+import { Game } from "../../../types";
 
 interface ProductProps {
   product: Game;
 }
-function Card({ product }: ProductProps) {
+const Card = memo(({ product }: ProductProps) => {
+
   return (
     <StyledWrapper>
       <div className="parent">
@@ -27,7 +28,7 @@ function Card({ product }: ProductProps) {
       </div>
     </StyledWrapper>
   );
-}
+});
 
 const StyledWrapper = styled.div`
   .parent {

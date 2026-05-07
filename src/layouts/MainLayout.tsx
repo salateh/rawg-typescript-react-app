@@ -4,6 +4,7 @@ import { NavBar } from "../components/NavBar/NavBar";
 import styled from "styled-components";
 
 export function MainLayout() {
+
   return (
     <div>
       <header>

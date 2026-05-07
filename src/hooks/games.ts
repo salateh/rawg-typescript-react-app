@@ -10,58 +10,73 @@ export function useGames() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  async function fetchGames() {
-    setError("");
-
-    try {
-      const response = await rawgApi.get<GamesResponse>("/games", {
-        params: { page_size: 5 },
-      });
-
-      setGame(response.data.results as Game[]);
-      setTimeout(() => {
-        setLoading(false);
-      }, 500);
-    } catch (e: unknown) {
-      const error = e as AxiosError;
-      setLoading(false);
-      setError(error.message);
-    }
-  }
-
   useEffect(() => {
+    const controller = new AbortController();
+    async function fetchGames() {
+      setError("");
+
+      try {
+        const response = await rawgApi.get<GamesResponse>("/games", {
+          params: { page_size: 5 },
+          signal: controller.signal,
+        });
+
+        setGame(response.data.results as Game[]);
+        setTimeout(() => {
+          setLoading(false);
+        }, 500);
+      } catch (e: any) {
+        console.log(e);
+
+        if (e.name === "CanceledError" || e.name === "AbortError") return;
+
+        const error = e as AxiosError;
+        setLoading(false);
+        setError(error.message);
+      }
+    }
     fetchGames();
+    return () => {
+      controller.abort();
+    };
   }, []);
 
   return { game, error, loading };
 }
 
 export function useGameDetail(id: string | undefined) {
-  const navigate = useNavigate();
-
   const [game, setGame] = useState<Game | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
   useEffect(() => {
     if (!id) return;
 
+    const controller = new AbortController();
     async function fetchGame() {
       setLoading(true);
       try {
-        const response = await rawgApi.get<Game>(`/games/${id}`);
+        const response = await rawgApi.get<Game>(`/games/${id}`, {
+          signal: controller.signal,
+        });
 
         setGame(response.data);
         setTimeout(() => {
           setLoading(false);
         }, 500);
-      } catch (e) {
+      } catch (e: any) {
+        if (e.name === "CanceledError" || e.name === "AbortError") return;
         setError((e as AxiosError).message);
         setLoading(false);
       }
     }
 
     fetchGame();
-  }, [id]); // Перезапускать, если ID изменился
+
+    return () => {
+      controller.abort();
+    };
+  }, [id]);
 
   return { game, loading, error };
 }

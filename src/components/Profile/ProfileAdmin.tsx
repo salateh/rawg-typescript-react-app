@@ -12,6 +12,7 @@ export function ProfileAdmin() {
     handleCancel,
     handleSave,
     handleStartEdit,
+    nameInputRef,
   } = useUser();
 
   return (
@@ -31,6 +32,7 @@ export function ProfileAdmin() {
               <>
                 <p> Не больше 15 символов!</p>
                 <input
+                  ref={nameInputRef}
                   name="name"
                   type="text"
                   className="text-2xl font-bold mb-1 text-white bg-slate-800 text-center  border-2 border-black-500 rounded-lg p-1"

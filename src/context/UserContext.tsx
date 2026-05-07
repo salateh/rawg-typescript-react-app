@@ -18,6 +18,7 @@ interface UserContextType {
     eventInput: ChangeEvent<HTMLInputElement | HTMLTextAreaElement, Element>,
   ) => void;
   handleStartEdit: () => void;
+  nameInputRef: React.RefObject<HTMLInputElement | null>;
 }
 
 export const UserContext = createContext<UserContextType | undefined>(
@@ -34,11 +35,13 @@ export function UserProvider({ children }: { children: ReactNode }) {
     loading,
     edit,
     user,
+    nameInputRef,
   } = useProfile();
 
   return (
     <UserContext.Provider
       value={{
+        nameInputRef,
         handleCancel,
         handleSave,
         handleChange,
@@ -47,6 +50,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
         edit,
         loading,
         user,
+
       }}
     >
       {children}

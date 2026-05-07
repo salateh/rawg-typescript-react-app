@@ -1,4 +1,4 @@
-import { SetStateAction, useEffect, useState } from "react";
+import { SetStateAction, useEffect, useRef, useState } from "react";
 export interface IProfile {
   name: string;
   status: string;
@@ -41,10 +41,18 @@ export function useProfile() {
     setItem((prev) => ({ ...prev, [name]: value }));
   };
 
+  const nameInputRef = useRef<HTMLInputElement>(null);
+
   const handleStartEdit = () => {
     setBackUp({ ...user });
     setEdit(true);
   };
+
+  useEffect(() => {
+    if (edit) {
+      nameInputRef.current?.focus();
+    }
+  }, [edit]);
 
   const handleCancel = () => {
     setItem(backUp);
@@ -53,7 +61,8 @@ export function useProfile() {
   const isInvalid =
     user.name.trim().length > 15 ||
     user.focus.trim().length > 30 ||
-    user.status.trim().length > 10;
+    user.status.trim().length > 10 ||
+    user.name.trim().length <= 0;
 
   const handleSave = () => {
     localStorage.setItem("userProfile", JSON.stringify(user));
@@ -61,6 +70,7 @@ export function useProfile() {
   };
 
   return {
+    nameInputRef,
     loading,
     edit,
     user,
