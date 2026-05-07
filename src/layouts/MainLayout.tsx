@@ -1,6 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import { NavBar } from "../components/GameCard/NavBar";
+
+import { NavBar } from "../components/NavBar/NavBar";
 import styled from "styled-components";
 
 export function MainLayout() {
@@ -20,16 +21,3 @@ export function MainLayout() {
     </div>
   );
 }
-
-const LayoutWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-
-  .content {
-    flex: 1;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-  }
-`;

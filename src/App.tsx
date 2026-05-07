@@ -1,7 +1,26 @@
 import React from "react";
+import { Route, Routes } from "react-router-dom";
+import { GamesPage } from "./pages/Game/GamesPage";
+import { GameDetailsPage } from "./pages/Game/GameDetailsPage";
+import { MainLayout } from "./layouts/MainLayout";
+import { ProfileAdmin } from "./components/Profile/ProfileAdmin";
+import { ProfilePage } from "./pages/Profile/ProfilePage";
+import { UserProvider } from "./context/UserContext";
 
 function App() {
-  return <div className="bg-red-500 text-white p-4">Tailwind работает!</div>;
+  return (
+    <UserProvider>
+      <Routes>
+        {/* Оборачиваем все маршруты в Layout */}
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<GamesPage />} />
+          <Route path="games" element={<GamesPage />} />
+          <Route path="game/:id" element={<GameDetailsPage />} />
+          <Route path="profile" element={<ProfilePage />} />
+        </Route>
+      </Routes>
+    </UserProvider>
+  );
 }
 
 export default App;
