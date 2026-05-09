@@ -5,7 +5,7 @@ import React, {
   ReactNode,
   ChangeEvent,
 } from "react";
-import { IProfile, useProfile } from "../hooks/profile";
+import { IProfile, useProfile } from "../hooks/Profile/useProfile";
 
 interface UserContextType {
   user: IProfile;
@@ -50,7 +50,6 @@ export function UserProvider({ children }: { children: ReactNode }) {
         edit,
         loading,
         user,
-
       }}
     >
       {children}

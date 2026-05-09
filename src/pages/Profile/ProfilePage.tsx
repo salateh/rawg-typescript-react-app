@@ -1,10 +1,9 @@
 import React from "react";
 import { ProfileAdmin } from "../../components/Profile/ProfileAdmin";
 import { Loader } from "../../components/Loader/Spinner";
-import { useProfile } from "../../hooks/profile";
+import { useProfile } from "../../hooks/Profile/useProfile";
 
 export function ProfilePage() {
-
   const { loading } = useProfile();
   if (loading) return <Loader />;
 

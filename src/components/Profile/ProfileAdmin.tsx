@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { StyledWrapper } from "./Profile.styled";
-import { useProfile } from "../../hooks/profile";
+import { useProfile } from "../../hooks/Profile/useProfile";
 import { useUser } from "../../context/UserContext";
 export function ProfileAdmin() {
   const {
