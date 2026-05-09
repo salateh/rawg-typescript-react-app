@@ -7,7 +7,28 @@ import { useHttp } from "../useHttp";
 // import rawgApi from "../api/rawgApi";
 
 export function useGames(searchText?: string) {
-  const url = searchText ? `/games?search=${searchText}` : "/games";
+  const [page, setPage] = useState(1);
+  const [allGames, setAllGames] = useState<Game[]>([]);
+  const url = searchText
+    ? `/games?search=${searchText}&page=${page}`
+    : "/games";
   const { data, loading, error } = useHttp<GamesResponse>(url);
-  return { game: data?.results || [], loading, error };
+
+  useEffect(() => {
+    if (data?.results) {
+      setAllGames((prev) => [...prev, ...data.results]);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    setAllGames([]);
+    setPage(1);
+  }, [searchText]);
+
+  return {
+    game: allGames || [],
+    loading,
+    error,
+    nextPage: () => setPage((prev) => prev + 1),
+  };
 }

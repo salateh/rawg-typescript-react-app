@@ -1,17 +1,25 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import { StyledWrapper } from "./NavBar.styled";
 // import { useNavBar } from "../../context/UseNavBarContext";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../context/UserContext";
 import { useSearch } from "../../hooks/Search/useSearch";
+import { SearchDropdown } from "../Search/SearchDropdown";
 
 export function NavBar() {
   //   const { togglePage } = useNavBar();
-  const navigate = useNavigate();
   const { user } = useUser();
   const [isSearchMode, setSearchMode] = useState(false);
   const { handleInputChange, game, clear } = useSearch();
+
+  const navigate = useNavigate();
+  const handleNavigate = useCallback(
+    (id: number) => {
+      navigate(`/game/${id}`);
+    },
+    [navigate],
+  );
   return (
     <StyledWrapper>
       <div className="button-container sticky">
@@ -82,7 +90,18 @@ export function NavBar() {
           {user.name}
         </p>
       </div>
-      <p>{clear ? "" : game.map((a) => a.name)}</p>
+      {clear === false && (
+        <div
+          className={`bg-slate-700 w-[400px] h-auto  border rounded-lg  grid grid-cols-[auto_auto_auto] auto-rows-auto gap-10 absolute ${clear === false && "hidden"}`}
+        >
+          <div className="flex flex-wrap gap-4">
+            {isSearchMode &&
+              game?.map((g) => (
+                <SearchDropdown game={g ?? []} onNavigate={handleNavigate} />
+              ))}
+          </div>
+        </div>
+      )}
     </StyledWrapper>
   );
 }

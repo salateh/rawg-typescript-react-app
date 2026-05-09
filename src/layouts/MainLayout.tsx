@@ -7,7 +7,7 @@ import styled from "styled-components";
 export function MainLayout() {
   return (
     <div>
-      <header>
+      <header className="">
         <NavBar />
       </header>
 

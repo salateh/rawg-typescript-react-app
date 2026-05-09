@@ -5,7 +5,7 @@ import { useGames } from "../Games/useGames";
 export function useSearch() {
   const [search, setSearch] = useState<string>("");
   const debouncedSearch = useDebounce(search, 800);
-  const { game, loading } = useGames(debouncedSearch);
+  const { game, loading, error } = useGames(debouncedSearch);
   const [clear, setClear] = useState(false);
 
   const handleInputChange = (
@@ -20,5 +20,5 @@ export function useSearch() {
     setSearch(value);
   };
 
-  return { handleInputChange, search, game, loading, clear };
+  return { handleInputChange, search, game, loading, clear, error };
 }
