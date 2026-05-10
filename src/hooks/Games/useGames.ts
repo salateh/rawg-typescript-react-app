@@ -11,12 +11,17 @@ export function useGames(searchText?: string) {
   const [allGames, setAllGames] = useState<Game[]>([]);
   const url = searchText
     ? `/games?search=${searchText}&page=${page}`
-    : "/games";
+    : `/games?page=${page}`;
   const { data, loading, error } = useHttp<GamesResponse>(url);
 
   useEffect(() => {
     if (data?.results) {
-      setAllGames((prev) => [...prev, ...data.results]);
+      setAllGames((prev) => {
+        const newGames = data.results.filter(
+          (newGame) => !prev.some((oldGame) => oldGame.id === newGame.id),
+        );
+        return [...prev, ...newGames];
+      });
     }
   }, [data]);
 
@@ -25,10 +30,15 @@ export function useGames(searchText?: string) {
     setPage(1);
   }, [searchText]);
 
+  
   return {
     game: allGames || [],
     loading,
     error,
-    nextPage: () => setPage((prev) => prev + 1),
+    nextPage: () => {
+      if (loading) return;
+
+      setPage((prev) => prev + 1);
+    },
   };
 }

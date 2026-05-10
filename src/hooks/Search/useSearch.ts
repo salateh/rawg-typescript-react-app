@@ -20,5 +20,13 @@ export function useSearch() {
     setSearch(value);
   };
 
-  return { handleInputChange, search, game, loading, clear, error };
+  return {
+    handleInputChange,
+    search,
+    game,
+    loading,
+    clear,
+    error,
+    debouncedSearch,
+  };
 }
