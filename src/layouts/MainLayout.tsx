@@ -7,7 +7,7 @@ import styled from "styled-components";
 export function MainLayout() {
   return (
     <div>
-      <header className=" ">
+      <header className="relative">
         <NavBar />
       </header>
 
@@ -15,8 +15,9 @@ export function MainLayout() {
         <Outlet />
       </main>
 
-      <footer className="flex items-end  bottom-0 justify-start   text-center overflow-y-auto">
+      <footer className="flex items-end  bottom-0 justify-start   text-center ">
         <p>© 2026 Game Catalog | Monk Path Mode</p>
+        <div className="block "></div>
       </footer>
     </div>
   );

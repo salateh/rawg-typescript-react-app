@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { StyledWrapper } from "./Profile.styled";
 import { useProfile } from "../../hooks/Profile/useProfile";
-import { useUser } from "../../context/UserContext";
+import { useUser } from "../../context/User/UserContext";
 export function ProfileAdmin() {
   const {
     edit,
@@ -35,7 +35,7 @@ export function ProfileAdmin() {
                   ref={nameInputRef}
                   name="name"
                   type="text"
-                  className="text-2xl font-bold mb-1 text-white bg-slate-800 text-center  border-2 border-black-500 rounded-lg p-1"
+                  className="text-2xl font-bold mb-1 text-white bg-slate-800 text-center  border-2 border-black-500 rounded-lg p-1 "
                   onChange={handleChange}
                   placeholder="Name..."
                 ></input>

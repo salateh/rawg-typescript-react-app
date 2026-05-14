@@ -4,7 +4,6 @@ import axios, { AxiosError } from "axios";
 import rawgApi from "../../api/rawgApi";
 import { useNavigate } from "react-router-dom";
 import { useHttp } from "../useHttp";
-// import rawgApi from "../api/rawgApi";
 
 export function useGames(searchText?: string) {
   const [page, setPage] = useState(1);
@@ -13,13 +12,13 @@ export function useGames(searchText?: string) {
     ? `/games?search=${searchText}&page=${page}`
     : `/games?page=${page}`;
   const { data, loading, error } = useHttp<GamesResponse>(url);
-
   useEffect(() => {
     if (data?.results) {
       setAllGames((prev) => {
         const newGames = data.results.filter(
           (newGame) => !prev.some((oldGame) => oldGame.id === newGame.id),
         );
+
         return [...prev, ...newGames];
       });
     }
@@ -30,7 +29,6 @@ export function useGames(searchText?: string) {
     setPage(1);
   }, [searchText]);
 
-  
   return {
     game: allGames || [],
     loading,

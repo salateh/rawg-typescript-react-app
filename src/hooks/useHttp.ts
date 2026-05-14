@@ -40,5 +40,5 @@ export function useHttp<T>(url: string) {
     };
   }, [url]);
 
-  return { data, error, loading };
+  return { data, error, loading,setLoading };
 }

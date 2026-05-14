@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { StyledWrapper } from "./NavBar.styled";
 // import { useNavBar } from "../../context/UseNavBarContext";
 import { useNavigate } from "react-router-dom";
-import { useUser } from "../../context/UserContext";
+import { useUser } from "../../context/User/UserContext";
 import { useSearch } from "../../hooks/Search/useSearch";
 import { SearchDropdown } from "../Search/SearchDropdown";
 
@@ -22,7 +22,7 @@ export function NavBar() {
   );
   return (
     <StyledWrapper>
-      <div className="button-container sticky">
+      <div className="button-container fixed">
         <button className="button" onClick={() => navigate("/games")}>
           <svg
             className="icon"

@@ -5,9 +5,9 @@ import React, {
   ReactNode,
   ChangeEvent,
 } from "react";
-import { IProfile, useProfile } from "../hooks/Profile/useProfile";
+import { IProfile, useProfile } from "../../hooks/Profile/useProfile";
 
-interface UserContextType {
+export interface UserContextType {
   user: IProfile;
   loading: boolean;
   edit: boolean;
