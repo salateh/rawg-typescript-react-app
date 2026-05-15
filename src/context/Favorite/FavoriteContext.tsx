@@ -17,8 +17,16 @@ export const FavoriteContext = createContext<FavoriteContextType | undefined>(
   undefined,
 );
 export function FavoriteProvider({ children }: { children: ReactNode }) {
-  const [favGames, setGames] = useState<Set<Game>>(() => new Set([]));
+  const [favGames, setGames] = useState<Set<Game>>(() => {
+    const savedFav = localStorage.getItem("favGames");
+    return savedFav ? new Set(JSON.parse(savedFav)) : new Set([]);
+  });
 
+  ///...
+  useEffect(() => {
+    localStorage.setItem("favGames", JSON.stringify(Array.from(favGames)));
+  }, [favGames]);
+  ///..
   const addGameToFavorite = (item: Game) => {
     setGames((prevSet) => {
       const alreadyExists = Array.from(prevSet).some((a) => a.id === item.id);
@@ -30,13 +38,6 @@ export function FavoriteProvider({ children }: { children: ReactNode }) {
       return newSet;
     });
   };
-  // const removeGameFromFavorite = (item: Game) => {
-  //   setGames((prevSet) => {
-  //     const newSet = new Set(prevSet);      ...пока в разработке
-  //     newSet.delete(item);
-  //     return newSet;
-  //   });
-  // };
 
   return (
     <FavoriteContext.Provider

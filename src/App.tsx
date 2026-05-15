@@ -7,6 +7,7 @@ import { ProfileAdmin } from "./components/Profile/ProfileAdmin";
 import { ProfilePage } from "./pages/Profile/ProfilePage";
 import { UserProvider } from "./context/User/UserContext";
 import { FavoriteProvider } from "./context/Favorite/FavoriteContext";
+import { App2 } from "./test";
 
 function App() {
   return (
@@ -21,9 +22,9 @@ function App() {
             <Route path="games" element={<GamesPage />} />
             <Route path="game/:id" element={<GameDetailsPage />} />
             <Route path="profile" element={<ProfilePage />} />
+            <Route path="App2" element={<App2 />} />
           </Route>
         </Routes>
-
         {/* ----CONTEXT---- */}
       </FavoriteProvider>
     </UserProvider>
